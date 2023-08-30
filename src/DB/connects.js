@@ -3,8 +3,9 @@ const Conmongoose = require('mongoose');
 const maxRetryAttempts = 3;
 const retryDelayMs = 3000;
 let retryAttempts = 0;
+const { DB_NAME } = require('../config/index');
   function connectWithRetry() {
-    Conmongoose.connect(process.env.DB)
+    Conmongoose.connect(`mongodb://127.0.0.1:27017/${DB_NAME}`)
       .then(() => {
         console.log('MongoDB connected successfully');
       })
